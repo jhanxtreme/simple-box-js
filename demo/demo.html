@@ -15,16 +15,14 @@
 
 <body>
 <h2>Simple Box - Demo</h2>
-<a href="#" data-source="images/1.jpg" class="popBox">Image 1 - Medium Size</a>&nbsp;<br/>
-<a href="#" data-source="images/2.jpg" class="popBox">Image 2 - Long Size</a>&nbsp;<br/>
-<a href="#" data-source="images/3.jpg" class="popBox">Image 3 - Small Size</a>&nbsp;<br/>
-<a href="#" data-source="images/4.jpg" class="popBox">Image 4 - Large Size</a>&nbsp;
+<a href="#" data-source="https://wallpapercave.com/wp/LtttNC6.jpg" class="simple-box">Image 1 - Medium Size</a>&nbsp;<br/>
+<a href="#" data-source="https://wallpapercave.com/wp/0PXNRtS.jpg" class="simple-box">Image 2 - Long Size</a>&nbsp;<br/>
 
-<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script src="jquery.js"></script>
 <script src="jw-simple-box.js"></script>
 <script>
 $(document).ready(function(){
-	$('.popBox').popBox({ targetType : "images" });
+	$('.simple-box').popBox({ targetType : "images" });
 });
 </script>
 
