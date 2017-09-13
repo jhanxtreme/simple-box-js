@@ -6,7 +6,7 @@
 	Github: https://github.com/jhanxtreme/simple-box-js
 **/
 $(document).ready(function(){
-	$.fn.popBox = function(config){
+	$.fn.simpleBox = function(config){
 
 		console.log('Simple Box Loaded.');
 
