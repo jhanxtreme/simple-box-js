@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, user-scalable=0;">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta charset='utf-8'> 
+<title>SimpleBox Demo - Jhan Mateo</title>
+<link rel="stylesheet" href="jw-simple-box.css" />
+<!--[if lt IE 9]>
+	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<style>
+</style>
+</head>
+
+<body>
+<h2>Simple Box - Demo</h2>
+<a href="#" data-source="images/1.jpg" class="popBox">Image 1 - Medium Size</a>&nbsp;<br/>
+<a href="#" data-source="images/2.jpg" class="popBox">Image 2 - Long Size</a>&nbsp;<br/>
+<a href="#" data-source="images/3.jpg" class="popBox">Image 3 - Small Size</a>&nbsp;<br/>
+<a href="#" data-source="images/4.jpg" class="popBox">Image 4 - Large Size</a>&nbsp;
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script src="jw-simple-box.js"></script>
+<script>
+$(document).ready(function(){
+	$('.popBox').popBox({ targetType : "images" });
+});
+</script>
+
+
+</body>
+
+</html>
