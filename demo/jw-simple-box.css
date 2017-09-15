@@ -54,6 +54,8 @@
 .jw-simple-box-inner img{
 	width: auto;
 	height: auto;
+  border: .55em white solid;
+  border-radius: .55em;
 }
 
 /**LOADING**/

@@ -15,14 +15,20 @@
 
 <body>
 <h2>Simple Box - Demo</h2>
-<a href="#" data-source="https://wallpapercave.com/wp/LtttNC6.jpg" class="simple-box">Image 1 - Medium Size</a>&nbsp;<br/>
-<a href="#" data-source="https://wallpapercave.com/wp/0PXNRtS.jpg" class="simple-box">Image 2 - Long Size</a>&nbsp;<br/>
+<a href="#" data-source="https://wallpapercave.com/wp/LtttNC6.jpg" class="simple-box images">Image 1</a>&nbsp;<br/>
+<a href="#" data-source="https://wallpapercave.com/wp/0PXNRtS.jpg" class="simple-box images">Image 2</a>&nbsp;<br/>
+<a href="#" data-source="http://jhanweb.com/public/images/webdesigns/preview/t4-w800.jpg" class="simple-box images">Image 3</a>&nbsp;<br/>
+<a href="#" data-source="http://jhanweb.com/projects/git/simple-box-js/images/3.jpg" class="simple-box images">Image 4</a>&nbsp;<br/>
 
 <script src="jquery.js"></script>
 <script src="jw-simple-box.js"></script>
 <script>
 $(document).ready(function(){
-	$('.simple-box').simpleBox({ targetType : "images" });
+
+	$('.simple-box.images').simpleBox({ targetType : "images" });
+
+	// $('.simple-box.modal').simpleBox({ targetType: "modal"});
+
 });
 </script>
 

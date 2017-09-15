@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, user-scalable=0;">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta charset='utf-8'> 
+<title>SimpleBox Demo - Jhan Mateo</title>
+<meta name="description" content="A lightweight and responsive dialog box.">
+<link rel="stylesheet" href="jw-simple-box.css" />
+<!--[if lt IE 9]>
+	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<style>
+</style>
+</head>
+
+<body>
+<h2>Simple Box - Demo</h2>
+<a href="#" data-source="http://jhanweb.com/projects/git/simple-box-js/images/1.jpg" class="simple-box images">Image 1 - Medium Size</a>&nbsp;<br/>
+<a href="#" data-source="http://jhanweb.com/projects/git/simple-box-js/images/2.jpg" class="simple-box images">Image 2 - Long Size</a>&nbsp;<br/>
+<a href="#" data-source="http://jhanweb.com/projects/git/simple-box-js/images/3.jpg" class="simple-box images">Image 3 - Small Size</a>&nbsp;<br/>
+<a href="#" data-source="http://jhanweb.com/projects/git/simple-box-js/images/4.jpg" class="simple-box images">Image 4 - Large Size</a>&nbsp;
+
+<div class="simple-box modal">
+MY MODAL
+</div>
+
+<script src="jquery.js"></script>
+<script src="jw-simple-box.js"></script>
+<script>
+$(document).ready(function(){
+
+	$('.simple-box.images').simpleBox({ targetType : "images" });
+
+	$('.simple-box.modal').simpleBox({ targetType: "modal"});
+
+});
+</script>
+
+
+</body>
+
+</html>
