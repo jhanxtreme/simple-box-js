@@ -15,16 +15,66 @@ $(document).ready(function(){
 		}else if(config.targetType == "modal"){
 			modal();
 		}else{
-			console.log("no target found");
+			console.log("Target type not found.")
 		}
+
 
 		function modal(){
-			console.log('the modal');
-			console.log(targetElement.html());
+			console.log('Simple-Box :: Loading modals');
+			var settings = {
+				attributes: {
+					dataModalSource: "data-modal-source",
+					dataModalTrigger: "data-modal-trigger"
+				},
+				modalSources : targetElement,
+				triggerName: null,
+				timeout: null,
+				ms: 100,
+				css: {
+					width: config.width || '50%',
+					height: config.height || '50%',
+					borderRadius: config.borderRadius || '.5em',
+					padding: config.padding || '1em'
+				}
+			};
+
+			var initClickEvents = function(){
+				for(var i=0; i < settings.modalSources.length; i++){
+					var sourceName = settings.modalSources[i].getAttribute('data-modal-source');
+					$("*[data-modal-trigger=" + sourceName + "]").click(function(e){
+						settings.triggerName = $(this)[0].dataset.modalTrigger;
+						$(".simple-box.modal[data-modal-source=" + settings.triggerName + "]").addClass('show');
+						if(settings.timeout){
+							clearTimeout(settings.timeout);
+						}
+
+						timeout = setTimeout(function(){
+							$(".simple-box.modal[data-modal-source=" + settings.triggerName + "] .content")
+								.css({ 'width': settings.css.width, 'height': settings.css.height, 'border-radius': settings.css.borderRadius, 'padding': settings.css.padding })
+								.addClass('show');
+						}, settings.ms);
+					});
+				}
+
+				close();
+			};
+
+			var close = function(){
+				$(".simple-box.modal").click(function(e){
+					e.preventDefault();
+					if(e.target === $(this)[0]){
+						$(".simple-box.modal[data-modal-source=" + settings.triggerName + "]").removeAttr('style').removeClass('show');
+						$(".simple-box.modal[data-modal-source=" + settings.triggerName + "] .content").removeAttr('style').removeClass('show');
+					}
+				});
+			};
+
+			initClickEvents();
 		}
 
+
 		function images(){
-			console.log('Simple Box Loaded.', config);
+			console.log('Simple-Box :: Loading images');
 			var settings = {
 				config: {
 					animation: {
@@ -33,7 +83,7 @@ $(document).ready(function(){
 					},
 					targetType: null,
 				},
-				availableTargetTypes: ['images','iframes','forms','html'],
+				availableTargetTypes: ['images','iframes','forms','html', 'modal'],
 				modal: {
 					ModalOuter: '.jw-simple-box',
 					ModalInner: '.jw-simple-box-inner',
@@ -194,34 +244,30 @@ $(document).ready(function(){
 					console.log(settings.messages.typeNotFound);
 				}
 			};
+
+			var initImageInstance = function(elem){
+				var imageInstance = elem.attr(settings.attributes.dataSource);
+				settings.modal.ModalTargetedInstance = new Image();
+				settings.modal.ModalTargetedInstance.src = imageInstance;
+				settings.modal.ModalTargetedInstance.setAttribute('id', 'targeted-element');
+				settings.modal.ModalTargetedInstance.onload = function(){
+					//set current dimensions
+					settings.target.dimensions.current.width = this.naturalWidth;
+					settings.target.dimensions.current.height = this.naturalHeight;
+					//store original dimensions
+					settings.target.dimensions.original.width = settings.target.dimensions.current.width;
+					settings.target.dimensions.original.height = settings.target.dimensions.current.height;
+					//trigger the box
+					calibrateContent();
+				};
+			}
 				
 			var listenClick = function(elem){
 				elem.click(function(e){
 					e.preventDefault();
-
 					preLoadModal();
-
-					if(settings.availableTargetTypes.indexOf(settings.config.targetType) > -1){
-						var imageInstance = $(this).attr(settings.attributes.dataSource);
-						settings.modal.ModalTargetedInstance = new Image();
-						settings.modal.ModalTargetedInstance.src = imageInstance;
-						settings.modal.ModalTargetedInstance.setAttribute('id', 'targeted-element');
-						settings.modal.ModalTargetedInstance.onload = function(){
-							//set current dimensions
-							settings.target.dimensions.current.width = this.naturalWidth;
-							settings.target.dimensions.current.height = this.naturalHeight;
-							//store original dimensions
-							settings.target.dimensions.original.width = settings.target.dimensions.current.width;
-							settings.target.dimensions.original.height = settings.target.dimensions.current.height;
-							//trigger the box
-							calibrateContent();
-						};
-					}else{
-						console.log(settings.messages.typeNotFound);
-					}
-
+					initImageInstance($(this));
 				});
-
 				$(settings.modal.ModalOuter).on('click', function(e){
 					console.log(e.target.id);
 					if(e.target.id != "targeted-element"){
@@ -251,5 +297,7 @@ $(document).ready(function(){
 			responseWhenResize();
 			listenClick(targetElement);
 		}
+
+		
 	};
 });
