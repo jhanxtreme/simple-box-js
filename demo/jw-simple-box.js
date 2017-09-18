@@ -119,7 +119,8 @@
 							autoHeight: { 'height' : 'auto'},
 							vAlignCenter: { 'margin': 'auto', 'position': 'absolute', 'top': '0', 'left': '0','bottom': '0', 'right': '0' },
 							modalOuterOverflow: { 'overflow-x': 'hidden', 'overflow-y': 'auto' },
-							overflowHidden: {'overflow': 'hidden'}
+							overflowHidden: {'overflow': 'hidden'},
+							clientTopSpacing: 32 // 2em = 32px
 						},
 						displayClassName: "show",
 					},
@@ -196,17 +197,20 @@
 						window.innerHeight > settings.target.dimensions.original.height ){
 						$(settings.modal.ModalTargetedInstance).css(settings.css.inline.vAlignCenter);
 						$(settings.modal.ModalInner).css(settings.css.inline.vAlignCenter);
+						console.log(111);
 					}
 
 					//window.width > target.width && window.height < target.height
 					if(window.innerWidth > settings.target.dimensions.original.width &&
-						window.innerHeight < settings.target.dimensions.original.height){
+						(window.innerHeight - settings.css.inline.clientTopSpacing) < settings.target.dimensions.original.height){
 						$(settings.modal.ModalTargetedInstance).css(settings.css.inline.marginCenter2emAuto);
+						console.log(222);
 					}
 
 					//window.width < target.width (for large sizes)
 					if(window.innerWidth <= settings.target.dimensions.original.width){
 						$(settings.modal.ModalTargetedInstance).css(settings.css.inline.fullWidthPadded90);
+						console.log(333);
 					}
 
 					//calculate center
