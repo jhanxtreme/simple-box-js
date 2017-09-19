@@ -26,13 +26,19 @@ h2{
 <body>
 <div class="demo images">
 	<h2>Simple Box - Demo Images</h2>
-	<a href="#" data-source="https://wallpapercave.com/wp/LtttNC6.jpg" class="simple-box images">Image 1</a>&nbsp;<br/>
-	<a href="#" data-source="https://wallpapercave.com/wp/0PXNRtS.jpg" class="simple-box images">Image 2</a>&nbsp;<br/>
-	<a href="#" data-source="http://jhanweb.com/public/images/webdesigns/preview/t4-w800.jpg" class="simple-box images">Image 3</a>&nbsp;<br/>
-	<a href="#" data-source="http://jhanweb.com/projects/git/simple-box-js/images/3.jpg" class="simple-box images">Image 4</a>&nbsp;<br/>
+	<a href="#" data-image-source="https://wallpapercave.com/wp/LtttNC6.jpg" class="simple-box">Image 1</a>&nbsp;<br/>
+	<a href="#" data-image-source="https://wallpapercave.com/wp/0PXNRtS.jpg" class="simple-box">Image 2</a>&nbsp;<br/>
+	<a href="#" data-image-source="http://jhanweb.com/public/images/webdesigns/preview/t4-w800.jpg" class="simple-box">Image 3</a>&nbsp;<br/>
+	<a href="#" data-image-source="http://jhanweb.com/projects/git/simple-box-js/images/3.jpg" class="simple-box">Image 4</a>&nbsp;<br/>
 <br/>
+<p>HTML</p>
 <code>
-$('.simple-box.images').simpleBox({ targetType : "images" });
+&lt;element data-image-source="IMAGE_URL" class="simple-box"&gt;Image 1&lt;/element&gt;&nbsp;
+</code>
+<br/><br />
+<p>JAVASCRIPT</p>
+<code>
+$('.simple-box').simpleBox({ targetType : "images" });
 </code>
 </div>
 
@@ -43,10 +49,38 @@ $('.simple-box.images').simpleBox({ targetType : "images" });
 	<button data-modal-trigger="my-modal1">Modal Simple Content!</button>
 	<button data-modal-trigger="my-modal2">Modal Simple Form!</button>
 	<button data-modal-trigger="my-modal3">Modal Simple Iframe!</button>
-
 	<br /><br />
+
+<p>HTML</p>
 <code>
-$('.simple-box.modal').simpleBox({ targetType : "modal", width: '50%', height: '50%', borderRadius: '0', padding: '1em' });
+//TRIGGER POINT<br/>
+&lt;element data-modal-trigger="my-modal1"&gt;Open Modal&lt;/element&gt;
+<br/><br />
+//SOURCE MODAL<br />
+&lt;div class="simple-box modal" data-modal-source="my-modal1"&gt;
+	&lt;div class="content"&gt;
+		...CONTENT GOES HERE...
+	&lt;/div&gt;
+&lt;/div&gt;
+</code>
+<br/><br/>
+<p>JAVASCRIPT</p>	
+<code>
+$('.simple-box').simpleBox({ targetType : "modal" });
+<br />
+<br />
+//Advance options
+<br />
+$('.simple-box').simpleBox({ 
+		targetType : "modal", 
+		css: {
+			width: '50%', 
+			height: '50%', 
+			borderRadius: '.2em', 
+			padding: '1em',
+			overflow: 'auto'
+		}
+	});
 </code>
 
 
@@ -94,8 +128,17 @@ $('.simple-box.modal').simpleBox({ targetType : "modal", width: '50%', height: '
 <script src="jw-simple-box.js"></script>
 <script>
 $(document).ready(function(){
-	$('.simple-box.images').simpleBox({ targetType : "images" });
-	$('.simple-box.modal').simpleBox({ targetType : "modal", width: '50%', height: '50%', borderRadius: '0', padding: '1em' });
+	$('.simple-box').simpleBox({ targetType : "images" });
+	$('.simple-box').simpleBox({ 
+		targetType : "modal", 
+		css: {
+			width: '50%', 
+			height: '50%', 
+			borderRadius: '.2em', 
+			padding: '1em',
+			overflow: 'auto'
+		}
+	});
 });
 </script>
 
